@@ -49,7 +49,7 @@ const Fileupload = (props)=>{
     const onUpload =async e =>{
         e.preventDefault();
 
-        const formData = {};
+        const formData = new FormData();
         formData.append('file',file);
 
         try{
