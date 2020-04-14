@@ -81,15 +81,16 @@ const Fileupload = (props)=>{
 
         }
     }
-
+    
     return(
         <Fragment>
+        <h1>Admin Panel</h1>
             {message ? <Message msg={message}/> : null}
 
-            <div className="container">
-                <h3> Add a Package</h3>
             <form onSubmit={onSubmit} id="newpackageform">
-
+                <div className="container">
+                <h2> Add a Package</h2>
+                <hr></hr>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1">Package Name</label>
                     <input type="text" className="form-control" id="packagename"  placeholder="Enter package name"/>
@@ -98,30 +99,33 @@ const Fileupload = (props)=>{
                     <label htmlFor="description">Description</label>
                     <input type="text" className="form-control" id="description" placeholder="Description"/>
                 </div>
-
-                <div className="form-group">
-                    <label htmlFor="latitude">Latitude</label>
-                    <input type="text" className="form-control" id="latitude" placeholder="Latitude"/>
+                <div className="coordinates">
+                <label>Coordinates</label>
+                <div className="row">
+                    <div className="form-group" className="col-md-6">
+                        <input type="text" className="form-control" id="latitude" placeholder="Latitude"/>
+                    </div>
+                    <div className="form-group" className="col-md-6">
+                        <input type="text" className="form-control" id="longitude" placeholder="Longitude"/>
+                    </div>
+                </div>
                 </div>
 
-                <div className="form-group">
-                    <label htmlFor="longitude">Longitude</label>
-                    <input type="text" className="form-control" id="longitude" placeholder="Longitude"/>
-                </div>
-
-
-                    <div className="custom-file">
+                    <div className="custom-file" className="form-group">
                         <input type="file" className="custom-file-input" id="customFile" name="file" onChange={onChange}/>
                         <label className="custom-file-label" htmlFor="customFile">
                             {filename}
                         </label>
                     </div>
-
-                    <Progress percentage= {uploadPercentage} />
-                    <button type="button" onClick={onUpload} className="btn btn-primary">Upload</button>
-
-                    <input type="submit" value="Submit" className="btn btn-primary btn-block mt-4"/>
-                </form>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <Progress percentage= {uploadPercentage}/>
+                        </div>
+                        <div className="col-md-6">
+                            <button type="button" onClick={onUpload} className="btn btn-primary upload-btn">Upload</button>
+                        </div>
+                    </div>
+                    <input type="submit" value="Submit" className="btn btn-primary btn-block mt-4" className="submit-btn"/>
 
                 { uploadedFile ? <div className="row mt-5">
                     <div className="col-md-6 m-auto">
@@ -129,6 +133,7 @@ const Fileupload = (props)=>{
 
                     </div> : null }
             </div>
+            </form>
 
             
         </Fragment>
