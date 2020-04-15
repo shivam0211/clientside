@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react'
 import Message from './message'
 import axios from 'axios';
-import Progress from './progress'
+import Progress from 'react-progressbar';
+
 
 const Fileupload = (props)=>{
 
@@ -58,7 +59,7 @@ const Fileupload = (props)=>{
                     'Content-Type': 'multipart/form-data'
                 },
                 onUploadProgress : ProgressEvent =>{
-                    setUploadPercentage(parseInt(Math.round((ProgressEvent.loaded *100)/ProgressEvent.total)));
+                    setUploadPercentage(parseInt(Math.round((ProgressEvent.loaded *100*2)/ProgressEvent.total)));
 
                     // clear percentage
                     setTimeout(() => setUploadPercentage(0),10000);
@@ -119,7 +120,9 @@ const Fileupload = (props)=>{
                     </div>
                     <div className="row">
                         <div className="col-md-6">
-                            <Progress percentage= {uploadPercentage}/>
+                         <Progress completed={uploadPercentage} />
+                            
+                        
                         </div>
                         <div className="col-md-6">
                             <button type="button" onClick={onUpload} className="btn btn-primary upload-btn">Upload</button>
